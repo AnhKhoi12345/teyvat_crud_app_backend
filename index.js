@@ -1,15 +1,17 @@
 const express = require("express");
+var cors = require("cors");
 const app = express();
 // Using Node.js `require()`
 const mongoose = require("mongoose");
 const Food = require("./models/food");
 const foodRoute = require("./routes/foodRoute");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/food", foodRoute);
-
+app.use("/uploads", express.static("uploads"));
 app.get("/", function (req, res) {
   res.send("Hello from Teyvat CRUD APP");
 });

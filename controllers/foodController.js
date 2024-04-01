@@ -21,7 +21,14 @@ const getSingleFood = async (req, res) => {
 
 const createFood = async (req, res) => {
   try {
-    const food = await Food.create(req.body);
+    // const food = await Food.create(req.body);
+    const food = new Food({
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      image: req.file.filename,
+    });
+    await food.save();
     res.status(200).json(food);
   } catch (error) {
     res.status(500).json({ message: error.message });
