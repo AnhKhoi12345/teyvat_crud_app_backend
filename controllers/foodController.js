@@ -27,6 +27,8 @@ const createFood = async (req, res) => {
       description: req.body.description,
       price: req.body.price,
       image: req.file.filename,
+      nation: req.body.nation,
+      category: req.body.category,
     });
     await food.save();
     res.status(200).json(food);
@@ -37,12 +39,12 @@ const createFood = async (req, res) => {
 const updateFood = async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const body = req.body;
     const fileName = req.file.filename;
-    const toBeUpdatedFood = Object.assign(body, {image: fileName});
+    const toBeUpdatedFood = Object.assign(body, { image: fileName });
 
-    console.log(toBeUpdatedFood)
+    console.log(toBeUpdatedFood);
     console.log(req.body);
     console.log(req.file);
     const food = await Food.findByIdAndUpdate(id, toBeUpdatedFood);
@@ -50,7 +52,7 @@ const updateFood = async (req, res) => {
       return res.status(404).json({ message: "food not found" });
     }
     const updatedFood = await Food.findById(id);
-    console.log(updatedFood)
+    console.log(updatedFood);
     res.status(200).json(updatedFood);
   } catch (error) {
     res.status(500).json({ message: error.message });

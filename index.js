@@ -5,12 +5,17 @@ const app = express();
 const mongoose = require("mongoose");
 const Food = require("./models/food");
 const foodRoute = require("./routes/foodRoute");
-
+const News = require("./models/news");
+const newsRoute = require("./routes/newsRoute");
+const Book = require("./models/book");
+const bookRoute = require("./routes/bookRoute");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/food", foodRoute);
+app.use("/api/news", newsRoute);
+app.use("/api/book", bookRoute);
 app.use("/uploads", express.static("uploads"));
 app.get("/", function (req, res) {
   res.send("Hello from Teyvat CRUD APP");

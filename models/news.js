@@ -1,25 +1,20 @@
 const mongoose = require("mongoose");
 
-const FoodSchema = mongoose.Schema(
+const NewsSchema = mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
-      required: [true, "Please enter food name"],
+      required: [true, "Please enter news name"],
     },
-    description: {
+    detail: {
       type: String,
       required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-      default: 0,
     },
     image: {
       type: String,
-      required: false,
+      required: true,
     },
-    nation: {
+    author: {
       type: String,
       required: true,
     },
@@ -32,5 +27,5 @@ const FoodSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-const Food = mongoose.model("Food", FoodSchema);
-module.exports = Food;
+const News = mongoose.model("News", NewsSchema);
+module.exports = News;
