@@ -9,6 +9,9 @@ const News = require("./models/news");
 const newsRoute = require("./routes/newsRoute");
 const Book = require("./models/book");
 const bookRoute = require("./routes/bookRoute");
+// const Book = require("./models/book");
+const orderRoute = require("./routes/orderRoute");
+const contactRoute = require("./routes/contactRoute");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -16,63 +19,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/food", foodRoute);
 app.use("/api/news", newsRoute);
 app.use("/api/book", bookRoute);
+app.use("/api/order", orderRoute);
+app.use("/api/contact", contactRoute);
 app.use("/uploads", express.static("uploads"));
 app.get("/", function (req, res) {
   res.send("Hello from Teyvat CRUD APP");
 });
-
-// app.get("/api/food", async (req, res) => {
-//   try {
-//     const food = await Food.find({});
-//     res.status(200).json(food);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-// app.get("/api/food/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const food = await Food.findById(id);
-//     res.status(200).json(food);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-// app.post("/api/food", async (req, res) => {
-//   try {
-//     const food = await Food.create(req.body);
-//     res.status(200).json(food);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-
-// app.put("/api/food/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const food = await Food.findByIdAndUpdate(id, req.body);
-//     if (!food) {
-//       return res.status(404).json({ message: "food not found" });
-//     }
-//     const updatedFood = await Food.findById(id);
-//     res.status(200).json(updatedFood);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-
-// app.delete("/api/food/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const food = await Food.findByIdAndDelete(id);
-//     if (!food) {
-//       return res.status(404).json({ message: "food not found" });
-//     }
-//     res.status(200).json({ message: "food deleted successfully" });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
 
 mongoose
   .connect(
