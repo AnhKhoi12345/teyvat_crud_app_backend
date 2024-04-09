@@ -12,6 +12,7 @@ const bookRoute = require("./routes/bookRoute");
 // const Book = require("./models/book");
 const orderRoute = require("./routes/orderRoute");
 const contactRoute = require("./routes/contactRoute");
+const staffRoute = require("./routes/staffRoute");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,6 +22,7 @@ app.use("/api/news", newsRoute);
 app.use("/api/book", bookRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/contact", contactRoute);
+app.use("/api/staff", staffRoute);
 app.use("/uploads", express.static("uploads"));
 app.get("/", function (req, res) {
   res.send("Hello from Teyvat CRUD APP");
